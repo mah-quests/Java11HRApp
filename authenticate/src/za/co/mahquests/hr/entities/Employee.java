@@ -1,6 +1,7 @@
 package za.co.mahquests.hr.entities;
 
 import java.time.LocalDate;
+import java.util.regex.Pattern;
 
 public class Employee extends Person {
     private static int empIncrement = 201;
@@ -25,6 +26,14 @@ public class Employee extends Person {
         return employeeeID + empIncrement;
     }
 
+    public String getEmpId(){
+
+        String empID;
+        empID = generateEMPNumber();
+        return empID;
+    }
+
+
     public int takeLeave(int daysAppliedFor) {
         if (daysAppliedFor < numberOfLeaveDays) {
             numberOfLeaveDays -= daysAppliedFor;
@@ -41,5 +50,22 @@ public class Employee extends Person {
                 "    Leave days = " + numberOfLeaveDays + "\n" +
                 "}";
     }
+
+
+    public String getFirstName(String fullNames){
+
+        String firstName = fullNames.substring(0,fullNames.lastIndexOf(" "));
+
+        return firstName;
+    }
+
+    public String getLastName(String fullNames){
+
+        String[] split = fullNames.split( Pattern.quote(" " ) );
+        String lastName = split[split.length-1];
+
+        return lastName;
+    }
+
 
 }

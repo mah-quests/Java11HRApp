@@ -3,6 +3,7 @@ package za.co.mahquests.hr.db;
 import za.co.mahquests.decoration.Model;
 import za.co.mahquests.hr.entities.Employee;
 import za.co.mahquests.hr.entities.Person;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,9 +18,9 @@ public class EmployeeDB {
     private EmployeeDB() {
     }
 
-    public static int getNextArrayElement(){
+    public static int getNextArrayElement() {
         rowNumber = employeeDB.size();
-        return  rowNumber++;
+        return rowNumber++;
     }
 
     public static void addUserForm() {
@@ -64,10 +65,9 @@ public class EmployeeDB {
         if (result.equalsIgnoreCase("Save")) {
             employeeDB.add(getNextArrayElement(), new Employee(name, idNumber, age, departmentName, salary, dateOfEmployment));
             System.out.println(name + " successfully added in the employee database!\n\n\n");
-            System.out.println("The company has : [ " + employeeDB.size() +" ]" + "number of employees");
+            System.out.println("The company has : [ " + employeeDB.size() + " ]" + "number of employees");
             addUserForm();
-        }
-        else if (result.equalsIgnoreCase("Cancel")) {
+        } else if (result.equalsIgnoreCase("Cancel")) {
             System.out.println("Employee not added to the database!");
             Model.clearScreen();
             Model.welcomeMessage();
@@ -86,11 +86,11 @@ public class EmployeeDB {
 
         if (employeeDB.size() > 0) {
 
-            for (int count = 0; count < employeeDB.size(); count++){
+            for (int count = 0; count < employeeDB.size(); count++) {
                 Object person = employeeDB.get(count);
-                System.out.println(count + ". " + ((Person)person).getFullNames());
+                System.out.println(count + ". " + ((Person) person).getFullNames());
             }
-            System.out.println((employeeDB.size() )+ ". Go Back");
+            System.out.println((employeeDB.size()) + ". Go Back");
         } else {
             System.out.println("No employees registered.");
             System.out.println("0. Go Back");
@@ -106,7 +106,7 @@ public class EmployeeDB {
 
     public static void getEmployeeDetails(int choice) {
 
-        if (employeeDB.size()>0) {
+        if (employeeDB.size() > 0) {
             Model.viewEmployeeDetail();
 
             System.out.println(employeeDB.get(choice));
@@ -117,11 +117,10 @@ public class EmployeeDB {
         System.out.print("\nEnter 0 to go back to main menu or 'update' to edit employee information[eg. 0] : ");
         String goBack = in.next();
 
-        if (goBack.equals("0")){
+        if (goBack.equals("0")) {
             Model.clearScreen();
             Model.welcomeMessage();
-        }else
-        {
+        } else {
             System.out.println("=======Employee Information to Update======"); //Testing else
             updateEmployeeDetails(choice);
         }
@@ -165,14 +164,14 @@ public class EmployeeDB {
 
     }
 
-    public static boolean seachPattern(String searchString, String searchBy){
+    public static boolean seachPattern(String searchString, String searchBy) {
 
-        String patternString = ".*"+searchBy+".*";
+        String patternString = ".*" + searchBy + ".*";
 
         Pattern pattern = Pattern.compile(patternString, Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(searchString);
 
-        if(matcher.matches()){
+        if (matcher.matches()) {
             return true;
         } else {
             return false;
@@ -186,12 +185,15 @@ public class EmployeeDB {
         Scanner in = new Scanner(System.in);
 
         System.out.print("\nFirst name you want to search by : ");
-        String firstName = in.next();
+        String firstName = in.nextLine();
 
-        for(Object p : employeeDB){
-            String fullname = ((Employee)p).getFullNames();
-            if(seachPattern(fullname,firstName)){
-                System.out.println(fullname);
+        for (Object p : employeeDB) {
+            String fullname = ((Employee) p).getFullNames();
+            if (seachPattern(fullname, firstName)) {
+                System.out.println(employeeDB.size() + ". " + fullname);
+                System.out.print("\nView employee details. Please select an option [eg. 1] : ");
+                int choice = in.nextInt();
+                getEmployeeDetails(choice);
             }
 
         }
@@ -199,38 +201,41 @@ public class EmployeeDB {
     }
 
 
-    // Hardcoded, needs proper implementation
-    public static String searchByLastName() {
-
-        System.out.println("\n***** Functionality for showing a list of users *****");
-        System.out.println("***** Currently hard-coded *****");
-        System.out.println("***** Functionality to be implemented here *****");
+    public static void searchByLastName() {
 
         Scanner in = new Scanner(System.in);
 
         System.out.print("\nLast name you want to search by : ");
-        String choice = in.next();
+        String lastName = in.nextLine();
 
-//        getEmployeeDetails();
+        for (Object p : employeeDB) {
+            String fullname = ((Employee) p).getFullNames();
+            if (seachPattern(fullname, lastName)) {
+                System.out.println(employeeDB.size() + ". " + fullname);
+                System.out.print("\nView employee details. Please select an option [eg. 1] : ");
+                int choice = in.nextInt();
+                getEmployeeDetails(choice);
+            }
 
-        return "searchByLasttName()";
+        }
+
     }
 
-    // Hardcoded, needs proper implementation
-    public static String searchByEmployeeNumber() {
-        System.out.println("\n***** Functionality for showing a list of users *****");
-        System.out.println("***** Currently hard-coded *****");
-        System.out.println("***** Functionality to be implemented here *****");
+    public static void searchByEmployeeNumber() {
 
         Scanner in = new Scanner(System.in);
 
         System.out.print("\nEmployee ID you want to search by : ");
-        String choice = in.next();
+        String empId = in.next();
 
-//        getEmployeeDetails();
+        for (Object p : employeeDB) {
+            String employeeID = ((Employee) p).getEmpId();
+            if (employeeID.equals(empId)) {
+                System.out.println(((Person) p).toString());
+            } else {
+                System.out.println("Employee number provided not valid");
+            }
 
-        return "searchByEmployeeNumber()";
+        }
     }
-
-
 }
