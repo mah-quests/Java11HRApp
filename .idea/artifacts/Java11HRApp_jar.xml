@@ -1,0 +1,12 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Java11HRApp:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Java11HRApp_jar</output-path>
+    <root id="archive" name="Java11HRApp.jar">
+      <element id="module-output" name="functions" />
+      <element id="module-output" name="authenticate" />
+      <element id="module-output" name="util" />
+      <element id="module-output" name="main" />
+      <element id="module-output" name="Java11HRApp" />
+    </root>
+  </artifact>
+</component>
