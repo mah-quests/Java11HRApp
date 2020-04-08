@@ -89,7 +89,6 @@ public class EmployeeDB {
             for (int count = 0; count < employeeDB.size(); count++){
                 Object person = employeeDB.get(count);
                 System.out.println(count + ". " + ((Person)person).getFullNames());
-
             }
             System.out.println((employeeDB.size() )+ ". Go Back");
         } else {
