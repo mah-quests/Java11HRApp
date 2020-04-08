@@ -186,17 +186,18 @@ public class EmployeeDB {
 
         System.out.print("\nFirst name you want to search by : ");
         String firstName = in.nextLine();
+        int row = 0;
 
         for (Object p : employeeDB) {
             String fullname = ((Employee) p).getFullNames();
             if (seachPattern(fullname, firstName)) {
-                System.out.println(employeeDB.size() + ". " + fullname);
-                System.out.print("\nView employee details. Please select an option [eg. 1] : ");
-                int choice = in.nextInt();
-                getEmployeeDetails(choice);
+                System.out.println(row + ". " + fullname);
             }
-
         }
+
+        System.out.print("\nView employee details. Please select an option [eg. 1] : ");
+        int choice = in.nextInt();
+        getEmployeeDetails(choice);
 
     }
 
@@ -207,20 +208,22 @@ public class EmployeeDB {
 
         System.out.print("\nLast name you want to search by : ");
         String lastName = in.nextLine();
+        int row = 0;
 
         for (Object p : employeeDB) {
             String fullname = ((Employee) p).getFullNames();
             if (seachPattern(fullname, lastName)) {
-                System.out.println(employeeDB.size() + ". " + fullname);
-                System.out.print("\nView employee details. Please select an option [eg. 1] : ");
-                int choice = in.nextInt();
-                getEmployeeDetails(choice);
+                System.out.println(row + ". " + fullname);
             }
-
         }
+
+        System.out.print("\nView employee details. Please select an option [eg. 1] : ");
+        int choice = in.nextInt();
+        getEmployeeDetails(choice);
 
     }
 
+    //This one needs a fix
     public static void searchByEmployeeNumber() {
 
         Scanner in = new Scanner(System.in);
@@ -230,7 +233,9 @@ public class EmployeeDB {
 
         for (Object p : employeeDB) {
             String employeeID = ((Employee) p).getEmpId();
-            if (employeeID.equals(empId)) {
+            if (employeeID.equalsIgnoreCase(empId)) {
+                System.out.println("Employee ID: " +(((Employee) p).getEmpId()));
+                System.out.println("Employee ID: " +empId);
                 System.out.println(((Person) p).toString());
             } else {
                 System.out.println("Employee number provided not valid");

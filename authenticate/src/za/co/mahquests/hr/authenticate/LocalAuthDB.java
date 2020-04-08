@@ -21,7 +21,6 @@ public class LocalAuthDB {
         dbUserPass.put("david.maile", "pa55w0rd132");
         dbUserPass.put("carl.sekwati", "pa55w0rd312");
         dbUserPass.put("masego.mokakale", "pa55w0rd123");
-
     }
 
     public static LocalAuthDB getConnection() {
