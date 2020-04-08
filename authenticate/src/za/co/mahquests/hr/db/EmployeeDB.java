@@ -114,11 +114,27 @@ public class EmployeeDB {
 
         Scanner in = new Scanner(System.in);
 
-        System.out.print("\nEnter 0 to go back to main menu [eg. 0] : ");
-        int goBack = in.nextInt();
+        System.out.print("\nEnter 0 to go back to main menu or 'update' to edit employee information[eg. 0] : ");
+        String goBack = in.next();
 
-        Model.clearScreen();
-        Model.welcomeMessage();
+        if (goBack.equals("0")){
+            Model.clearScreen();
+            Model.welcomeMessage();
+        }else
+        {
+            System.out.println("=======Employee Information to Update======"); //Testing else
+            updateEmployeeDetails(choice);
+        }
+
+    }
+
+    public static void updateEmployeeDetails(int choice) {
+
+        System.out.println(employeeDB.get(choice));
+
+        Scanner in = new Scanner(System.in);
+        addUserForm();
+
     }
 
 
@@ -156,8 +172,7 @@ public class EmployeeDB {
         Pattern pattern = Pattern.compile(patternString, Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(searchString);
 
-        boolean isMatched = matcher.matches();
-        if(isMatched){
+        if(matcher.matches()){
             return true;
         } else {
             return false;
