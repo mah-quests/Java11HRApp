@@ -193,6 +193,28 @@ public class Model {
         System.out.println("*********************************************************");
     }
 
+    public static void viewCompanyTraining() {
+        System.out.println("*********************************************************");
+        System.out.println("****                                                  ***");
+        System.out.println("*      MaH Quests HR Application Read Announcement      *");
+        System.out.println("****                                                  ***");
+        System.out.println("*********************************************************");
+    }
+
+    public static void deleteCompanyTraining() {
+        System.out.println("*********************************************************");
+        System.out.println("****                                                  ***");
+        System.out.println("*      MaH Quests HR Application Delete Announcement    *");
+        System.out.println("****                                                  ***");
+        System.out.println("*********************************************************");
+    }
+    public static void updateCompanyTraining() {
+        System.out.println("*********************************************************");
+        System.out.println("****                                                  ***");
+        System.out.println("*      MaH Quests HR Application Delete Announcement    *");
+        System.out.println("****                                                  ***");
+        System.out.println("*********************************************************");
+    }
     public static void clearScreen() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
