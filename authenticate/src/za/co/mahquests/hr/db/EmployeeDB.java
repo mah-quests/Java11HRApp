@@ -106,7 +106,7 @@ public class EmployeeDB {
 
     public static void getEmployeeDetails(int choice) {
 
-        if (employeeDB.size()>0) {//
+        if (employeeDB.size()>0) {
             Model.viewEmployeeDetail();
 
             System.out.println(employeeDB.get(choice));
