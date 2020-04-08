@@ -34,12 +34,12 @@ public class Employee extends Person {
 
     public String toString() {
         return super.toString() + "\n" +
-                "Employee ID = " + employeeeID + ",\n" +
-                "Department Name = " + departmentName + ",\n" +
-                "Date Joined = " + dateJoined.toString() + ",\n" +
-                "Salary = " + salary + ",\n" +
-                "Leave days = " + numberOfLeaveDays + "\n" +
-                '}';
+                "    Employee ID = " + employeeeID + ",\n" +
+                "    Department Name = " + departmentName + ",\n" +
+                "    Date Joined = " + dateJoined.toString() + ",\n" +
+                "    Salary = " + salary + ",\n" +
+                "    Leave days = " + numberOfLeaveDays + "\n" +
+                "}";
     }
 
 }

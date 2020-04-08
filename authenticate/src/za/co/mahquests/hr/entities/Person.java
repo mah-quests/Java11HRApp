@@ -13,10 +13,11 @@ public abstract class Person {
 
     @Override
     public String toString() {
-        return "Person{" +
-                "Full Names = " + fullNames + ",\n" +
-                "ID Number = " + IDNumber + ",\n" +
-                "Age = " + age + ",";
+        return "Person\n" +
+                "{" +
+                "    Full Names = " + fullNames + ",\n" +
+                "    ID Number = " + IDNumber + ",\n" +
+                "    Age = " + age + ",";
 
     }
 
