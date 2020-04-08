@@ -58,18 +58,22 @@ public class EmployeeDB {
 
         LocalDate dateOfEmployment = LocalDate.of(year, month, day);
 
-        System.out.print("\nEmployee Details loaded, type  \'Save\' to save: ");
+        System.out.print("\nEmployee Details loaded, type  \'Save\' to save OR \'Cancel\' to cancel: ");
         String result = in.next();
 
         if (result.equalsIgnoreCase("Save")) {
             employeeDB.add(getNextArrayElement(), new Employee(name, idNumber, age, departmentName, salary, dateOfEmployment));
             System.out.println(name + " successfully added in the employee database!\n\n\n");
             System.out.println("The company has : [ " + employeeDB.size() +" ]" + "number of employees");
+            addUserForm();
+        }
+        else if (result.equalsIgnoreCase("Cancel")) {
+            System.out.println("Employee not added to the database!");
+            Model.clearScreen();
+            Model.welcomeMessage();
         }
 
 
-        Model.clearScreen();
-        Model.welcomeMessage();
     }
 
     public static void addEmployeeInDB(Person person) {
@@ -85,8 +89,9 @@ public class EmployeeDB {
             for (int count = 0; count < employeeDB.size(); count++){
                 Object person = employeeDB.get(count);
                 System.out.println(count + ". " + ((Person)person).getFullNames());
-                System.out.println((employeeDB.size() )+ ". Go Back");
+
             }
+            System.out.println((employeeDB.size() )+ ". Go Back");
         } else {
             System.out.println("No employees registered.");
             System.out.println("0. Go Back");
@@ -161,7 +166,7 @@ public class EmployeeDB {
 
     }
 
-    // Hardcoded, needs proper implementation
+
     public static void searchByFirstName() {
 
         Scanner in = new Scanner(System.in);

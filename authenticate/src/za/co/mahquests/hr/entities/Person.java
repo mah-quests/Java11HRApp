@@ -20,7 +20,7 @@ public abstract class Person {
 
     }
 
-    public String getFullNames(){
+    public String getFullNames() {
         return fullNames;
     }
 }
