@@ -13,7 +13,7 @@ import java.util.Scanner;
 
 public class TrainingDB {
 
-    private static List trainingDB = new ArrayList<Training>();
+    private static ArrayList trainingDB = new ArrayList<Training>();
     private static int rowNumber;
 
 
@@ -50,8 +50,6 @@ public class TrainingDB {
             Model.deleteCompanyAnnouncement();
             deleteCompanyAnnouncement();
 
-        } else {
-            return;
         }
 
     }
@@ -388,8 +386,6 @@ public class TrainingDB {
             System.out.println("The company has : [ " + trainingDB.size() +" ]" + "number of training this month");
         }
 
-        trainingDB.forEach(s-> System.out.println(s));
-
         Model.clearScreen();
         Model.welcomeMessage();
 
@@ -447,7 +443,6 @@ public class TrainingDB {
             System.out.println("The company has : [ " + trainingDB.size() +" ]" + "number of training this month");
         }
 
-        trainingDB.forEach(s-> System.out.println(s));
 
         Model.clearScreen();
         Model.welcomeMessage();
@@ -455,47 +450,41 @@ public class TrainingDB {
     }
 
     // Hardcoded, needs proper implementation
-    public static String viewCompanyAnnouncements () {
+    public static void viewCompanyAnnouncements () {
 
-        System.out.println("\n***** Functionality for showing a list of users *****");
-        System.out.println("***** Currently hard-coded *****");
-        System.out.println("***** Functionality to be implemented here *****");
+        System.out.println("Implement View Company Announcements");
 
         Scanner in = new Scanner(System.in);
 
         System.out.print("\nAnnouncement ID to read : ");
         String choice = in.next();
 
-
-        return "viewCompanyAnnouncements()";
     }
 
     // Hardcoded, needs proper implementation
-    public static String deleteCompanyAnnouncement () {
-        System.out.println("\n***** Functionality for showing a list of users *****");
-        System.out.println("***** Currently hard-coded *****");
-        System.out.println("***** Functionality to be implemented here *****");
+    public static void deleteCompanyAnnouncement () {
+
+        System.out.println("Implement Delete Company Announcements");
 
         Scanner in = new Scanner(System.in);
 
         System.out.print("\nDelete by Announcement ID : ");
         String choice = in.next();
 
-        return "deleteCompanyAnnouncement()";
+
     }
 
     // Hardcoded, needs proper implementation
-    public static String updateCompanyAnnouncement () {
-        System.out.println("\n***** Functionality for showing a list of users *****");
-        System.out.println("***** Currently hard-coded *****");
-        System.out.println("***** Functionality to be implemented here *****");
+    public static void updateCompanyAnnouncement () {
+
+        System.out.println("Implement Update Company Announcements");
 
         Scanner in = new Scanner(System.in);
 
         System.out.print("\nupdate by Announcement ID : ");
         String choice = in.next();
 
-        return "updateCompanyAnnouncement()";
+
     }
 }
 
