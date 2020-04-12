@@ -1,6 +1,9 @@
 package za.co.mahquests.hr.entities;
 
+import java.text.NumberFormat;
 import java.time.LocalDate;
+import java.util.Currency;
+import java.util.Locale;
 import java.util.regex.Pattern;
 
 public class Employee extends Person {
@@ -33,6 +36,15 @@ public class Employee extends Person {
         return empID;
     }
 
+    public String getSalary(){
+
+        Locale locale = new Locale("en", "ZA");
+        NumberFormat zaFormat = NumberFormat.getCurrencyInstance(locale);
+
+        return  zaFormat.format(salary);
+
+    }
+
 
     public int takeLeave(int daysAppliedFor) {
         if (daysAppliedFor < numberOfLeaveDays) {
@@ -46,7 +58,7 @@ public class Employee extends Person {
                 "    Employee ID = " + employeeeID + ",\n" +
                 "    Department Name = " + departmentName + ",\n" +
                 "    Date Joined = " + dateJoined.toString() + ",\n" +
-                "    Salary = " + salary + ",\n" +
+                "    Salary = " + getSalary() + ",\n" +
                 "    Leave days = " + numberOfLeaveDays + "\n" +
                 "}";
     }
@@ -54,17 +66,15 @@ public class Employee extends Person {
 
     public String getFirstName(String fullNames){
 
-        String firstName = fullNames.substring(0,fullNames.lastIndexOf(" "));
+        return fullNames.substring(0,fullNames.lastIndexOf(" "));
 
-        return firstName;
     }
 
     public String getLastName(String fullNames){
 
         String[] split = fullNames.split( Pattern.quote(" " ) );
-        String lastName = split[split.length-1];
+        return split[split.length-1];
 
-        return lastName;
     }
 
 
