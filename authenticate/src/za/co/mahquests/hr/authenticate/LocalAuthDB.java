@@ -2,6 +2,7 @@ package za.co.mahquests.hr.authenticate;
 
 import za.co.mahquests.decoration.Model;
 
+import java.io.Console;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -57,11 +58,20 @@ public class LocalAuthDB {
     private static void getUserPassword() {
 
         LocalAuthDB db = LocalAuthDB.getConnection();
+        String password;
 
-        Scanner in = new Scanner(System.in);
+        try {
+            Console console = System.console();
+            System.out.print("Please enter your Password: ");
+            char[] passwordChar = console.readPassword();
 
-        System.out.print("Please enter your Password : ");
-        String password = in.next();
+            password = new String(passwordChar);
+
+        } catch (NullPointerException e){
+            Scanner in = new Scanner(System.in);
+            password = in.next();
+        }
+
 
         if (db.checkPassword(password)) {
             loginResult = false;
@@ -76,6 +86,7 @@ public class LocalAuthDB {
         }
 
     }
+
 
     public boolean checkUsername(String username) {
         if (dbUserPass.containsKey(username)) {
