@@ -233,12 +233,25 @@ public class EmployeeDB {
 
         for (Object p : employeeDB) {
             String employeeID = ((Employee) p).getEmpId();
-            if (employeeID.equalsIgnoreCase(empId)) {
-                System.out.println("Employee ID: " +(((Employee) p).getEmpId()));
-                System.out.println("Employee ID: " +empId);
-                System.out.println(((Person) p).toString());
+            System.out.println("Currently EMP ID is:"+employeeID);
+            if (seachPattern(employeeID,empId)) {
+                System.out.println("Employee : " +(((Employee) p).getFullNames()));
+                //System.out.println("Employee ID: " +empId);
+                // System.out.println(((Person) p).toString());
             } else {
                 System.out.println("Employee number provided not valid");
+            }
+            System.out.println("Please enter a valid option");
+            System.out.println("[Back] [Exit]");
+            String choice = in.next();
+
+            if(choice.equalsIgnoreCase("Back")){
+                Model.displayMenu("page3","");
+                break;
+            }
+
+            if(choice.equalsIgnoreCase("Exit")) {
+                System.exit(0);
             }
 
         }
