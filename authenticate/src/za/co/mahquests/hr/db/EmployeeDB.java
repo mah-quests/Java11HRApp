@@ -58,24 +58,34 @@ public class EmployeeDB {
         int day = in.nextInt();
 
         LocalDate dateOfEmployment = LocalDate.of(year, month, day);
-
-        System.out.print("\nEmployee Details loaded, type  \'Save\' to save OR \'Cancel\' to cancel: ");
+        //line 62 - changed how the options appear
+        System.out.print("\n [Save] [New] [Cancel] ");
         String result = in.next();
 
         if (result.equalsIgnoreCase("Save")) {
             employeeDB.add(getNextArrayElement(), new Employee(name, idNumber, age, departmentName, salary, dateOfEmployment));
             System.out.println(name + " successfully added in the employee database!\n\n\n");
             System.out.println("The company has : [ " + employeeDB.size() + " ]" + "number of employees");
+            Model.clearScreen();
+            Model.welcomeMessage();
+        }
+        else if (result.equalsIgnoreCase("New")) {
+            employeeDB.add(getNextArrayElement(), new Employee(name, idNumber, age, departmentName, salary, dateOfEmployment));
+            System.out.println(name + " successfully added in the employee database!\n\n\n");
+            System.out.println("The company has : [ " + employeeDB.size() + " ]" + "number of employees");
             addUserForm();
-        } else if (result.equalsIgnoreCase("Cancel")) {
+        }
+        else if (result.equalsIgnoreCase("Cancel")) {
             System.out.println("Employee not added to the database!");
             Model.clearScreen();
             Model.welcomeMessage();
         }
+        else{
+            addUserForm();
+        }
 
 
     }
-
     public static void addEmployeeInDB(Person person) {
         employeeDB.add(person);
     }
