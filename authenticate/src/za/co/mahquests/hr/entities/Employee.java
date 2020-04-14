@@ -64,10 +64,12 @@ public class Employee extends Person {
     }
 
 
-    public String getFirstName(String fullNames){
+    public String getFirstName(){
 
-        return fullNames.substring(0,fullNames.lastIndexOf(" "));
+        String fullNames = getFullNames();
+        String firstName = fullNames.substring(0,fullNames.lastIndexOf(" "));
 
+        return firstName;
     }
 
     public String getLastName(String fullNames){

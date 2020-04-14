@@ -186,13 +186,41 @@ public class EmployeeDB {
 
         System.out.print("\nFirst name you want to search by : ");
         String firstName = in.nextLine();
-        int row = 0;
+        // int row = employeeDB.size();
 
         for (Object p : employeeDB) {
-            String fullname = ((Employee) p).getFullNames();
+            String fullname = ((Employee) p).getFirstName();
             if (seachPattern(fullname, firstName)) {
-                System.out.println(row + ". " + fullname);
+                /*System.out.println(row + ". " + fullname);
+                System.out.println("Please enter a valid option");
+                int choice = in.nextInt();
+                getEmployeeDetails(choice);
+                row++;*/
+                for (int count = 0; count < employeeDB.size(); count++) {
+                    Object person = employeeDB.get(count);
+                    System.out.println(count + ". " + firstName);
+
+                }
+
+                System.out.println("Please enter a valid option");
+                int choice = in.nextInt();
+                getEmployeeDetails(choice);
+
             }
+            System.out.println("Please enter a valid option");
+            System.out.println("[Back] [Exit]");
+            String choice = in.next();
+
+            if(choice.equalsIgnoreCase("Back")){
+                Model.displayMenu("page3","");
+
+            }
+
+            if(choice.equalsIgnoreCase("Exit")) {
+                System.exit(0);
+            }
+
+
         }
 
         System.out.print("\nView employee details. Please select an option [eg. 1] : ");
@@ -200,7 +228,6 @@ public class EmployeeDB {
         getEmployeeDetails(choice);
 
     }
-
 
     public static void searchByLastName() {
 
