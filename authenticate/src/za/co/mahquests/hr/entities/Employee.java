@@ -71,11 +71,13 @@ public class Employee extends Person {
         return firstName;
     }
 
-    public String getLastName(String fullNames){
+    public String getLastName(){
 
+        String fullNames = getFullNames();
         String[] split = fullNames.split( Pattern.quote(" " ) );
-        return split[split.length-1];
+        String lastName = split[split.length-1];
 
+        return lastName;
     }
 
 

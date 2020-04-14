@@ -248,16 +248,33 @@ public class EmployeeDB {
         int row = 0;
 
         for (Object p : employeeDB) {
-            String fullname = ((Employee) p).getFullNames();
+            String fullname = ((Employee) p).getLastName();
             if (seachPattern(fullname, lastName)) {
-                System.out.println(row + ". " + fullname);
+                for (int count = 0; count < employeeDB.size(); count++) {
+                    Object person = employeeDB.get(count);
+                    System.out.println(count + ". " + lastName);
+
+                }
+
+                System.out.println("Please enter a valid option");
+                int choice = in.nextInt();
+                getEmployeeDetails(choice);
+
             }
+            System.out.println("Please enter a valid option");
+            System.out.println("[Back] [Exit]");
+            String choice = in.next();
+
+            if(choice.equalsIgnoreCase("Back")){
+                Model.displayMenu("page3","");
+                break;
+            }
+
+            if(choice.equalsIgnoreCase("Exit")) {
+                System.exit(0);
+            }
+
         }
-
-        System.out.print("\nView employee details. Please select an option [eg. 1] : ");
-        int choice = in.nextInt();
-        getEmployeeDetails(choice);
-
     }
 
     //This one needs a fix
