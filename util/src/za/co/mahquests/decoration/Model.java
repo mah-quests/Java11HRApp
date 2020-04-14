@@ -63,10 +63,9 @@ public class Model {
 
         if (menu.equals("page5")) {
             System.out.println("1. Add New Training");
-            System.out.println("2. Update Training Schedule");
-            System.out.println("3. View Training Schedule");
-            System.out.println("4. Delete scheduled training");
-            System.out.println("5. Back to Main Menu");
+            System.out.println("2. View Training Schedule");
+            System.out.println("3. Delete scheduled training");
+            System.out.println("4. Back to Main Menu");
         }
 
         if (menu.equals("page6")) {

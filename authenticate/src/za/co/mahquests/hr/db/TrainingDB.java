@@ -13,13 +13,15 @@ import java.util.Scanner;
 
 public class TrainingDB {
 
-    private static ArrayList trainingDB = new ArrayList<Training>();
+    private static List trainingDB = new ArrayList<Training>();
     private static int rowNumber;
 
 
     public static int getNextArrayElement(){
         rowNumber = trainingDB.size();
         return  rowNumber++;
+
+
     }
 
     // Hardcoded, needs proper implementation
@@ -32,59 +34,52 @@ public class TrainingDB {
         int choice = in.nextInt();
 
         if (choice == 1) {
-            Model.addCompanyAnnouncements();
+            Model.addTrainingToMonthMenu();
             selectAddNewTraining();
 
         } else if (choice == 2) {
 
-            Model.readCompanyAnnouncement();
-            viewCompanyAnnouncements();
+            Model.viewCompanyTraining();
+            viewTraining(choice);
 
         } else if (choice == 3) {
 
-            Model.deleteCompanyAnnouncement();
-            deleteCompanyAnnouncement();
+            Model.deleteCompanyTraining();
+            deleteTraining();
 
-        } else if (choice == 4) {
-
-            Model.deleteCompanyAnnouncement();
-            deleteCompanyAnnouncement();
-
+        } else {
+            return;
         }
 
     }
 
 
-    public static String selectAddNewTraining () {
+    public static void selectAddNewTraining () {
 
         Model.displayMenu("page6", LocalAuthDB.role);
         Scanner in = new Scanner(System.in);
 
-        System.out.print("\nSelect the month to add Training : ");
+        System.out.print("Select the month to add Training : ");
         int month = in.nextInt();
 
         getMonthChoice(month, "add");
 
 
-
-        return "addNewAnnouncement()";
     }
 
-    public static String selectDeleteTraining() {
+    public static void selectDeleteTraining() {
 
         Model.displayMenu("page6", LocalAuthDB.role);
         Scanner in = new Scanner(System.in);
 
-        System.out.print("\nSelect the month to Delete Training : ");
+        System.out.print("Select the month to Delete Training : ");
         int month = in.nextInt();
 
         getMonthChoice(month, "delete");
 
-
-        return "deleteCompanyAnnouncement()";
     }
 
-    public static String selectUpdateTraining() {
+    public static void selectUpdateTraining() {
 
         Model.displayMenu("page6", LocalAuthDB.role);
         Scanner in = new Scanner(System.in);
@@ -93,72 +88,57 @@ public class TrainingDB {
         int month = in.nextInt();
 
         getMonthChoice(month, "update");
-
-
-        return "updateCompanyAnnouncement()";
     }
 
     public static void getMonthChoice(int input, String function) {
         if (function.equals("add")) {
             switch (input) {
                 case 1:
-                    System.out.println("January");
-                    addNewTraining();
+                    addNewTraining(1);
 
                     break;
                 case 2:
-                    System.out.println("February");
-                    addNewTraining();
+                    addNewTraining(2);
 
                     break;
                 case 3:
-                    System.out.println("March");
-                    addNewTraining();
+                    addNewTraining(3);
 
                     break;
                 case 4:
-                    System.out.println("April");
-                    addNewTraining();
+                    addNewTraining(4);
 
                     break;
                 case 5:
-                    System.out.println("May");
-                    addNewTraining();
+                    addNewTraining(5);
 
                     break;
                 case 6:
-                    System.out.println("June");
-                    addNewTraining();
+                    addNewTraining(6);
 
                     break;
                 case 7:
-                    System.out.println("July");
-                    addNewTraining();
+                    addNewTraining(7);
 
                     break;
                 case 8:
-                    System.out.println("August");
-                    addNewTraining();
+                    addNewTraining(8);
 
                     break;
                 case 9:
-                    System.out.println("September");
-                    addNewTraining();
+                    addNewTraining(9);
 
                     break;
                 case 10:
-                    System.out.println("October");
-                    addNewTraining();
+                    addNewTraining(10);
 
                     break;
                 case 11:
-                    System.out.println("November");
-                    addNewTraining();
+                    addNewTraining(11);
 
                     break;
                 case 12:
-                    System.out.println("December");
-                    addNewTraining();
+                    addNewTraining(12);
 
                     break;
                 default:
@@ -168,7 +148,6 @@ public class TrainingDB {
         }else if (function.equals("delete")){
             switch (input) {
                 case 1:
-                    System.out.println("January");
                     deleteTraining();
 
                     break;
@@ -302,7 +281,7 @@ public class TrainingDB {
 
     }
 
-    public static void addNewTraining () {
+    public static void addNewTraining (int month ) {
 
         Model.clearScreen();
         Model.addTrainingToMonthMenu();
@@ -312,14 +291,14 @@ public class TrainingDB {
         System.out.println("Start Date of Training: ");
         System.out.print("       Please enter year of training [eg, 2020]: ");
         int starYear = in.nextInt();
-        System.out.print("       Please enter month of training [eg, 03]: ");
-        int startMonth = in.nextInt();
-        System.out.print("       Please enter day of training [eg, 30]: ");
+        System.out.print("       The month selected is :  " + month);
+        System.out.print(" ");
+        System.out.print( "\n       Please enter day of training [eg, 30]: ");
         int startDay = in.nextInt();
-        LocalDate startDate = LocalDate.of(starYear, startMonth, startDay);
+        LocalDate startDate = LocalDate.of(starYear, month, startDay);
 
-        System.out.println("End Date of Training: ");
-        System.out.print("       Please enter year of training [eg, 2020]: ");
+        System.out.print("End Date of Training: ");
+        System.out.print("\n       Please enter year of training [eg, 2020]: ");
         int endYear = in.nextInt();
         System.out.print("       Please enter month of training [eg, 03]: ");
         int endMonth = in.nextInt();
@@ -331,16 +310,31 @@ public class TrainingDB {
         String title = in.next();
 
 
-        System.out.print("\nTraining Details loaded, type  \'Save\' to save: ");
+        System.out.print("\n [ Save ] [ Update ] [ Back ] ");
         String result = in.next();
 
-        if (result.equalsIgnoreCase("Save")) {
+        if (result.equalsIgnoreCase("Save") && startDate.isBefore(endDate)) {
             trainingDB.add(getNextArrayElement(), new Training(startDate,endDate,title));
             System.out.println(title + " successfully added in the training database!\n\n\n");
             System.out.println("The company has : [ " + trainingDB.size() +" ]" + "number of training this month");
         }
+        else if (result.equalsIgnoreCase("Update"))
+        {
 
-        trainingDB.forEach(s-> System.out.println(s));
+            System.out.println(" Still need to create update method");
+        }
+
+        else if (result.equalsIgnoreCase("Back"))
+        {
+
+            Model.showMonthlyTrainingMenu();
+            Model.displayMenu("page5", LocalAuthDB.role);
+            TrainingDB.trainingFunctionOption();
+        }
+        else
+        {
+            System.out.println("Training not added");
+        }
 
         Model.clearScreen();
         Model.welcomeMessage();
@@ -385,6 +379,8 @@ public class TrainingDB {
             System.out.println(title + " successfully Deleted from the training database!\n\n\n");
             System.out.println("The company has : [ " + trainingDB.size() +" ]" + "number of training this month");
         }
+
+        trainingDB.forEach(s-> System.out.println(s));
 
         Model.clearScreen();
         Model.welcomeMessage();
@@ -444,47 +440,32 @@ public class TrainingDB {
         }
 
 
+
+        trainingDB.forEach(s-> System.out.println(s));
+
         Model.clearScreen();
         Model.welcomeMessage();
 
     }
+    //just added
 
-    // Hardcoded, needs proper implementation
-    public static void viewCompanyAnnouncements () {
+    public static void viewTraining (int choice) {
 
-        System.out.println("Implement View Company Announcements");
+        if (trainingDB.size()>0) {
+            Model.viewCompanyTraining();
 
-        Scanner in = new Scanner(System.in);
-
-        System.out.print("\nAnnouncement ID to read : ");
-        String choice = in.next();
-
-    }
-
-    // Hardcoded, needs proper implementation
-    public static void deleteCompanyAnnouncement () {
-
-        System.out.println("Implement Delete Company Announcements");
+            //  System.out.println(trainingDB.get(choice));
+        }
 
         Scanner in = new Scanner(System.in);
 
-        System.out.print("\nDelete by Announcement ID : ");
-        String choice = in.next();
+        System.out.print("\nEnter 0 to go back to main menu [eg. 0] : ");
+        int goBack = in.nextInt();
 
-
+        Model.clearScreen();
+        Model.welcomeMessage();
     }
 
-    // Hardcoded, needs proper implementation
-    public static void updateCompanyAnnouncement () {
 
-        System.out.println("Implement Update Company Announcements");
-
-        Scanner in = new Scanner(System.in);
-
-        System.out.print("\nupdate by Announcement ID : ");
-        String choice = in.next();
-
-
-    }
 }
 
