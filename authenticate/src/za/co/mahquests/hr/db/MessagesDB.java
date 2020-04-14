@@ -57,7 +57,11 @@ public class MessagesDB {
             Model.deleteCompanyAnnouncement();
             deleteCompanyAnnouncement();
 
-        } else if (choice == 4) {
+        } else if(choice == 4){
+            Model.editCompanyAnnouncement();
+            updateCompanyAnnouncement();
+
+        } else if (choice == 5) {
             Model.displayMenu("page1", LocalAuthDB.role);
         } else {
             System.out.println("!!!  Invalid Option  !!!. Please Re-Enter: \n");
@@ -69,9 +73,11 @@ public class MessagesDB {
     }
 
 
-    public static String addNewAnnouncement() {
+    public static String addNewAnnouncement() {  //*add a "Add new" *
 
         Model.clearScreen();
+        //Model.addCompanyAnnouncements();
+
         Scanner in = new Scanner(System.in);
         System.out.println("Add an announcement \n====================");
         System.out.print("\nSubject of your new announcement : ");
@@ -113,11 +119,88 @@ public class MessagesDB {
         return "addNewAnnouncement()"; //not sure what to return!!!
     }
 
-
-    public static String viewCompanyAnnouncements() {
-        int count = 0;
+    public static void updateCompanyAnnouncement() {
         Model.clearScreen();
+        //Model.editCompanyAnnouncement();
 
+        int count;
+        Scanner myReader = new Scanner(System.in);
+
+        if (messagesDBS.size() > 0) {
+            for (count = 0; count < messagesDBS.size(); count++) {
+                Object msg = messagesDBS.get(count);
+                System.out.println(count + ". " + ((MessagesDB) msg).getMsgSubject());      //Displaying announcment Messages
+            } //Displaying all announcements
+
+            System.out.println("Please choose announcement to update :");
+            int choice = myReader.nextInt();
+            String editSubject = " ";
+
+            if (choice >= 0 && choice <= messagesDBS.size()) {
+                Object msg = messagesDBS.get(choice);
+                Model.clearScreen();
+                Model.readCompanyAnnouncement();
+                System.out.println("\n1. Subject\t\t: " + ((MessagesDB) msg).getMsgSubject() + "\n");
+                System.out.println("2. Description\t: " + ((MessagesDB) msg).getMsgDetails() + "\n");
+                System.out.println("Please choose what to update on the announcement: ");
+                int option = myReader.nextInt();
+
+
+                if (option == 1) {
+
+                    Scanner in = new Scanner(System.in);
+                    System.out.println("please update the subject of the announcement: ");
+                    String tempSubj = in.nextLine();
+
+
+                    System.out.println("\n Company announcement Loaded, type \'Save\' to save");
+                    String saveMsg = in.nextLine();
+
+                    if (saveMsg.equalsIgnoreCase("save")) {
+
+                        String tempDet = ((MessagesDB) msg).getMsgDetails();
+                        messagesDBS.set(choice, new MessagesDB(tempSubj,tempDet));
+                        System.out.println("\n - " + ((MessagesDB) msg).getMsgSubject() + " - Has Been Updated to \""+tempSubj + "\" \n");
+                    }
+           /* if (choice == messagesDBS.) {
+
+                Object msg = messagesDBS.get(choice);
+                System.out.println(count + ". " + ((MessagesDB) msg).getMsgSubject());
+                messagesDBS.set(choice, new MessagesDB(subject, detail));
+            }*/
+
+                }else if (option == 2) {
+
+                    Scanner in = new Scanner(System.in);
+                    System.out.println("please update the Details of the announcement: ");
+                    String tempDet = in.nextLine();
+
+
+                    System.out.println("\n Company announcement Loaded, type \'Save\' to save");
+                    String saveMsg = in.nextLine();
+
+                    if (saveMsg.equalsIgnoreCase("save")) {
+
+                        String tempSubj = ((MessagesDB) msg).getMsgSubject();
+                        messagesDBS.set(choice, new MessagesDB(tempSubj,tempDet));
+                        System.out.println("\n - " + ((MessagesDB) msg).getMsgDetails() + " - Has Been Updated to \""+tempDet + "\" \n");
+
+
+                    }
+                }
+                Model.listCompanyAnnouncementsMenu();
+                Model.displayMenu("page4", LocalAuthDB.role);
+                MessagesDB.companyAnnouncementsOption();
+
+
+            }
+        }
+    }
+    public static String viewCompanyAnnouncements() {
+
+        Model.clearScreen();
+        Model.listCompanyAnnouncementsMenu();
+        int count;
         if (messagesDBS.size() > 0) {
             for (count = 0; count < messagesDBS.size(); count++) {
                 Object msg = messagesDBS.get(count);
@@ -148,15 +231,19 @@ public class MessagesDB {
 
             System.out.println("\nSubject\t: " + ((MessagesDB) msg).getMsgSubject() + "\n");
             System.out.println("Description\t: " + ((MessagesDB) msg).getMsgDetails() + "\n\n");
-            System.out.println("Press -1 to Go back to Announcements :");
-            int goBack = in.nextInt();
+            System.out.println("0. Go back to Announcements");
+            System.out.println("1. Update Announcement");
+            int selection = in.nextInt();
 
-            if (goBack == -1) {
+            if (selection == 0) {
                 Model.readCompanyAnnouncement();
                 viewCompanyAnnouncements();
-            }/* else if (goBack == -9) {
-                Model.displayMenu("page1", LocalAuthDB.role); //go back to main menu
-            }*/
+            }else if (selection == 1) {
+                updateCompanyAnnouncement();
+            }else {
+                System.out.println("*** INVALID Option, please re-enter");
+
+            }
 
 
         } else {
