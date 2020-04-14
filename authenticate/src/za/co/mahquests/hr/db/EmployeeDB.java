@@ -243,9 +243,9 @@ public class EmployeeDB {
 
         for (Object p : employeeDB) {
             String employeeID = ((Employee) p).getEmpId();
-            System.out.println("Currently EMP ID is:"+employeeID);
-            if (seachPattern(employeeID,empId)) {
-                System.out.println("Employee : " +(((Employee) p).getFullNames()));
+            System.out.println("Currently EMP ID is:" + employeeID);
+            if (seachPattern(employeeID, empId)) {
+                System.out.println("Employee : " + (((Employee) p).getFullNames()));
                 //System.out.println("Employee ID: " +empId);
                 // System.out.println(((Person) p).toString());
             } else {
@@ -255,15 +255,14 @@ public class EmployeeDB {
             System.out.println("[Back] [Exit]");
             String choice = in.next();
 
-            if(choice.equalsIgnoreCase("Back")){
-                Model.displayMenu("page3","");
+            if (choice.equalsIgnoreCase("Back")) {
+                Model.displayMenu("page3", "");
                 break;
             }
 
-            if(choice.equalsIgnoreCase("Exit")) {
+            if (choice.equalsIgnoreCase("Exit")) {
                 System.exit(0);
             }
-
         }
     }
 }
