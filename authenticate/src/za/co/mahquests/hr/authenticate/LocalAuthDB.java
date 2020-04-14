@@ -79,6 +79,7 @@ public class LocalAuthDB {
             if (username.equals("admin")) {
                 role = "admin";
             }
+            assignUserRole(username);
             Model.welcomeMessage();
         } else {
             System.out.println("\nPassword incorrect, please login again...\n\n\n\n");
@@ -99,6 +100,17 @@ public class LocalAuthDB {
     public boolean checkPassword(String password) {
         String dbPass = dbUserPass.get(username);
         return dbPass.equals(password);
+    }
+
+
+    //feature-one. this method will assign the role to the appropriate user
+    private static void assignUserRole(String username){
+        if (username.equalsIgnoreCase("admin") || username.equalsIgnoreCase("thato.mohono") || username.equalsIgnoreCase("tumo.mohono")){
+            role="admin";
+        }
+        else if (username.equalsIgnoreCase("beverly.sithole") || username.equalsIgnoreCase("david.maile") || username.equalsIgnoreCase("carl.sekwati") || username.equalsIgnoreCase("masego.mokakale")){
+            role = "user";
+        }
     }
 
 

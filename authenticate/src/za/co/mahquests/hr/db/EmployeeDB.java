@@ -58,24 +58,34 @@ public class EmployeeDB {
         int day = in.nextInt();
 
         LocalDate dateOfEmployment = LocalDate.of(year, month, day);
-
-        System.out.print("\nEmployee Details loaded, type  \'Save\' to save OR \'Cancel\' to cancel: ");
+        //line 62 - changed how the options appear
+        System.out.print("\n [Save] [New] [Cancel] ");
         String result = in.next();
 
         if (result.equalsIgnoreCase("Save")) {
             employeeDB.add(getNextArrayElement(), new Employee(name, idNumber, age, departmentName, salary, dateOfEmployment));
             System.out.println(name + " successfully added in the employee database!\n\n\n");
             System.out.println("The company has : [ " + employeeDB.size() + " ]" + "number of employees");
+            Model.clearScreen();
+            Model.welcomeMessage();
+        }
+        else if (result.equalsIgnoreCase("New")) {
+            employeeDB.add(getNextArrayElement(), new Employee(name, idNumber, age, departmentName, salary, dateOfEmployment));
+            System.out.println(name + " successfully added in the employee database!\n\n\n");
+            System.out.println("The company has : [ " + employeeDB.size() + " ]" + "number of employees");
             addUserForm();
-        } else if (result.equalsIgnoreCase("Cancel")) {
+        }
+        else if (result.equalsIgnoreCase("Cancel")) {
             System.out.println("Employee not added to the database!");
             Model.clearScreen();
             Model.welcomeMessage();
         }
+        else{
+            addUserForm();
+        }
 
 
     }
-
     public static void addEmployeeInDB(Person person) {
         employeeDB.add(person);
     }
@@ -250,14 +260,26 @@ public class EmployeeDB {
 
         for (Object p : employeeDB) {
             String employeeID = ((Employee) p).getEmpId();
-            if (employeeID.equalsIgnoreCase(empId)) {
-                System.out.println("Employee ID: " +(((Employee) p).getEmpId()));
-                System.out.println("Employee ID: " +empId);
-                System.out.println(((Person) p).toString());
+            System.out.println("Currently EMP ID is:" + employeeID);
+            if (seachPattern(employeeID, empId)) {
+                System.out.println("Employee : " + (((Employee) p).getFullNames()));
+                //System.out.println("Employee ID: " +empId);
+                // System.out.println(((Person) p).toString());
             } else {
                 System.out.println("Employee number provided not valid");
             }
+            System.out.println("Please enter a valid option");
+            System.out.println("[Back] [Exit]");
+            String choice = in.next();
 
+            if (choice.equalsIgnoreCase("Back")) {
+                Model.displayMenu("page3", "");
+                break;
+            }
+
+            if (choice.equalsIgnoreCase("Exit")) {
+                System.exit(0);
+            }
         }
     }
 }
