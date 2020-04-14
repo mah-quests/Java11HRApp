@@ -29,11 +29,10 @@ public class Employee extends Person {
         return employeeeID + empIncrement;
     }
 
+
     public String getEmpId(){
 
-        String empID;
-        empID = generateEMPNumber();
-        return empID;
+        return employeeeID;
     }
 
     public String getSalary(){

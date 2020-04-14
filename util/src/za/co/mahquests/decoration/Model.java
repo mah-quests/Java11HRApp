@@ -175,6 +175,13 @@ public class Model {
         System.out.println("****                                                  ***");
         System.out.println("*********************************************************");
     }
+    public static void editCompanyAnnouncement(){
+        System.out.println("*********************************************************");
+        System.out.println("****                                                  ***");
+        System.out.println("*      MaH Quests HR Application Update Announcement    *");
+        System.out.println("****                                                  ***");
+        System.out.println("*********************************************************");
+    }
 
 
     public static void showMonthlyTrainingMenu() {
