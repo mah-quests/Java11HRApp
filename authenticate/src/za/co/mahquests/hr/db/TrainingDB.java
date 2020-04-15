@@ -40,7 +40,7 @@ public class TrainingDB {
         } else if (choice == 2) {
 
             Model.viewCompanyTraining();
-            viewTraining(choice);
+           viewTraining();
 
         } else if (choice == 3) {
 
@@ -449,13 +449,19 @@ public class TrainingDB {
     }
     //just added
 
-    public static void viewTraining (int choice) {
+    public static void viewTraining () {
+
+        int listSize = trainingDB.size();
 
         if (trainingDB.size()>0) {
             Model.viewCompanyTraining();
 
-            //  System.out.println(trainingDB.get(choice));
         }
+
+        for (int i = 0; i<listSize; i++){
+            System.out.println("The company has : [ " + trainingDB.size() +" ]" + "number of training this month");
+        }
+
 
         Scanner in = new Scanner(System.in);
 
