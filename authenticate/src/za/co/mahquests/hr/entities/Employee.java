@@ -64,7 +64,6 @@ public class Employee extends Person {
 
 
     public String getFirstName(){
-
         String fullNames = getFullNames();
         String firstName = fullNames.substring(0,fullNames.lastIndexOf(" "));
 
@@ -74,11 +73,27 @@ public class Employee extends Person {
     public String getLastName(){
 
         String fullNames = getFullNames();
-        String[] split = fullNames.split( Pattern.quote(" " ) );
+        String[] split = fullNames.split(Pattern.quote(" "));
         String lastName = split[split.length-1];
 
         return lastName;
+
+    }
+
+    public String getDepartmentName(){
+        return departmentName;
+    }
+
+    public String getIDNum(){
+        return super.getIDNumber();
+    }
+
+    public int getAge(){
+        return super.getAge();
     }
 
 
+    public LocalDate getDateJoined(){
+        return dateJoined;
+    }
 }

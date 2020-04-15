@@ -26,5 +26,11 @@ public abstract class Person {
     public String getFullNames() {
         return fullNames;
     }
+    public String getIDNumber() {
+        return IDNumber;
+    }
+    public int getAge() {
+        return age;
+    }
 
 }
