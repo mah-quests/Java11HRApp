@@ -111,6 +111,14 @@ public class Model {
         System.out.println("*********************************************************");
     }
 
+    public static void updateEmployeeDetail() {
+        System.out.println("*********************************************************");
+        System.out.println("****                                                  ***");
+        System.out.println("*   MaH Quests HR Application Update Employees Details  *");
+        System.out.println("****                                                  ***");
+        System.out.println("*********************************************************");
+    }
+
     public static void searchForEmployee() {
         System.out.println("*********************************************************");
         System.out.println("****                                                  ***");

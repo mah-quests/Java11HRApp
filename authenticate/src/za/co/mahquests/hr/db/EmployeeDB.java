@@ -124,25 +124,82 @@ public class EmployeeDB {
 
         Scanner in = new Scanner(System.in);
 
-        System.out.print("\nEnter 0 to go back to main menu or 'update' to edit employee information[eg. 0] : ");
+        System.out.print("\n[Back][Update][Exit] :");
         String goBack = in.next();
 
-        if (goBack.equals("0")) {
+        if (goBack.equals("Back")) {
             Model.clearScreen();
             Model.welcomeMessage();
-        } else {
-            System.out.println("=======Employee Information to Update======"); //Testing else
+        } else if(goBack.equals("Update")) {
+
             updateEmployeeDetails(choice);
+        }else if(goBack.equals("Exit")){
+            System.exit(0);
         }
 
     }
 
     public static void updateEmployeeDetails(int choice) {
 
-        System.out.println(employeeDB.get(choice));
+        Object employee = (Employee)employeeDB.get(choice);
+        String fullNames = ((Employee) employee).getFullNames();
 
-        Scanner in = new Scanner(System.in);
-        addUserForm();
+        Model.updateEmployeeDetail();
+
+        Scanner in  = new Scanner(System.in);
+
+        System.out.println("Current  First Name:      "  + ((Employee) employee).getFirstName());
+        System.out.print("New First Name:      ");
+        String fname = in.next();
+
+        System.out.println("Current  Last Name: "  + ((Employee) employee).getLastName());
+        System.out.print("Employee Last Name:    ");
+        String lname = in.next();
+
+        String name = fname + lname;
+
+        System.out.print("Current Employee ID Number : " + ((Employee) employee).getIDNum());
+        System.out.print("     Employee ID Number:   ");
+        String idNumber = in.next();
+
+        System.out.print("Current Employee Current Age : " + ((Employee) employee).getAge());
+        System.out.print("    Employee Age:    ");
+        int age = in.nextInt();
+
+        System.out.print(" Current Employee Department : " + ((Employee) employee).getDepartmentName());
+        System.out.print("    Employee Department:      ");
+        String departmentName = in.next();
+
+        System.out.print("Current Employee Salary : " + ((Employee) employee).getSalary());
+        System.out.print("    Employee Salary:    ");
+        double salary = in.nextDouble();
+
+        System.out.println("Date of employment: " + ((Employee) employee).getDateJoined());
+        System.out.print("       Please enter year of employment [eg, 2014]:    ");
+        int year = in.nextInt();
+        System.out.print("       Please enter month of employment [eg, 03]:     ");
+        int month = in.nextInt();
+        System.out.print("       Please enter day of employment [eg, 30]:         ");
+        int day = in.nextInt();
+
+        LocalDate dateOfEmployment = LocalDate.of(year, month, day);
+
+
+        System.out.print("\n[Save] [Back] [Exit] ");
+        String result = in.next();
+
+        if (result.equalsIgnoreCase("Save")) {
+            employeeDB.set(choice,new Employee(name ,idNumber, age, departmentName, salary, dateOfEmployment));
+            System.out.println(fname +" " + lname + " successfully updated in the employee database!\n\n\n");
+            System.out.println("The company has : [ " + employeeDB.size() + " ]" + "number of employees");
+
+        } else if (result.equalsIgnoreCase("Back")) {
+            System.out.println("Employee not added to the database!");
+            Model.clearScreen();
+            Model.welcomeMessage();
+        } else if(result.equalsIgnoreCase("Exit")){
+            System.exit(0);
+        }
 
     }
 
