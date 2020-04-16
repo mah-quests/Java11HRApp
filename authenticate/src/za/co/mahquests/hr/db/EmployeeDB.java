@@ -251,119 +251,155 @@ public class EmployeeDB {
 
         Scanner in = new Scanner(System.in);
 
-        System.out.print("\nFirst name you want to search by : ");
-        String firstName = in.nextLine();
-        // int row = employeeDB.size();
+        if (employeeDB.size() == 0) {
 
-        for (Object p : employeeDB) {
-            String fullname = ((Employee) p).getFirstName();
-            if (seachPattern(fullname, firstName)) {
-                /*System.out.println(row + ". " + fullname);
-                System.out.println("Please enter a valid option");
-                int choice = in.nextInt();
-                getEmployeeDetails(choice);
-                row++;*/
-                for (int count = 0; count < employeeDB.size(); count++) {
-                    Object person = employeeDB.get(count);
-                    System.out.println(count + ". " + firstName);
-
-                }
-
-                System.out.println("Please enter a valid option");
-                int choice = in.nextInt();
-                getEmployeeDetails(choice);
-
-            }
-            System.out.println("Please enter a valid option");
+            System.out.println("There are no registered employees on the database");
+            System.out.println("Please select an option");
             System.out.println("[Back] [Exit]");
             String choice = in.next();
 
-            if(choice.equalsIgnoreCase("Back")){
-                Model.displayMenu("page3","");
+            if(choice.equalsIgnoreCase("Back")) {
+                Model.displayMenu("page3", " ");
+            }
+        } else {
+            System.out.print("\nFirst name you want to search by : ");
+            String firstName = in.nextLine();
 
+            var tempDB = new ArrayList<>();
+
+            for (Object list : employeeDB) {
+                String fullname = ((Employee) list).getFirstName();
+                if (seachPattern(fullname, firstName)) {
+                    tempDB.add(list);
+                }
             }
 
-            if(choice.equalsIgnoreCase("Exit")) {
-                System.exit(0);
+            for (int count = 0; count < tempDB.size(); count++) {
+                Object person = tempDB.get(count);
+                System.out.println(count + ". " + ((Employee) person).getFullNames());
+                System.out.print("Please select an option to view [eg.1]");
+                int choice = in.nextInt();
+                getEmployeeDetails(choice);
             }
+        }
+       System.out.println("Please select an option");
+        System.out.println("[Back] [Exit]");
+        String choice = in.next();
 
+        if (choice.equalsIgnoreCase("Back")) {
+            Model.clearScreen();
+            Model.displayMenu("page3", "");
 
         }
 
-        System.out.print("\nView employee details. Please select an option [eg. 1] : ");
-        int choice = in.nextInt();
-        getEmployeeDetails(choice);
+        if (choice.equalsIgnoreCase("Exit")) {
+            System.exit(0);
+        }
+
 
     }
+
 
     public static void searchByLastName() {
 
         Scanner in = new Scanner(System.in);
 
-        System.out.print("\nLast name you want to search by : ");
-        String lastName = in.nextLine();
-        int row = 0;
+        if(employeeDB.size()==0){
 
-        for (Object p : employeeDB) {
-            String fullname = ((Employee) p).getLastName();
-            if (seachPattern(fullname, lastName)) {
-                for (int count = 0; count < employeeDB.size(); count++) {
-                    Object person = employeeDB.get(count);
-                    System.out.println(count + ". " + lastName);
-
-                }
-
-                System.out.println("Please enter a valid option");
-                int choice = in.nextInt();
-                getEmployeeDetails(choice);
-
-            }
-            System.out.println("Please enter a valid option");
+            System.out.println("There are no registered employees on the database");
+            System.out.println("Please select an option");
             System.out.println("[Back] [Exit]");
             String choice = in.next();
 
-            if(choice.equalsIgnoreCase("Back")){
-                Model.displayMenu("page3","");
-                break;
+            if(choice.equalsIgnoreCase("Back")) {
+                Model.displayMenu("page3", " ");
             }
-
-            if(choice.equalsIgnoreCase("Exit")) {
-                System.exit(0);
-            }
-
         }
+        else {
+            System.out.print("\nLast name you want to search by : ");
+            String lastName = in.nextLine();
+
+            var tempDB = new ArrayList<>();
+
+            for (Object list : employeeDB) {
+                String fullname = ((Employee) list).getLastName();
+                if (seachPattern(fullname, lastName)) {
+                    tempDB.add(list);
+                }
+            }
+
+            for (int count = 0; count < tempDB.size(); count++) {
+                Object person = tempDB.get(count);
+                System.out.println(count + ". " + ((Employee) person).getFullNames());
+                System.out.print("Please select an option to view [eg.1]");
+                int choice = in.nextInt();
+                getEmployeeDetails(choice);
+            }
+        }
+                System.out.println("Please select an option");
+                System.out.println("[Back] [Exit]");
+                String choice = in.next();
+
+                if (choice.equalsIgnoreCase("Back")) {
+
+                    Model.displayMenu("page3", "");
+                }
+
+                if (choice.equalsIgnoreCase("Exit")) {
+                    System.exit(0);
+                }
+
+
     }
 
-    //This one needs a fix
+
     public static void searchByEmployeeNumber() {
 
         Scanner in = new Scanner(System.in);
 
-        System.out.print("\nEmployee ID you want to search by : ");
-        String empId = in.next();
-
-        for (Object p : employeeDB) {
-            String employeeID = ((Employee) p).getEmpId();
-            System.out.println("Currently EMP ID is:" + employeeID);
-            if (seachPattern(employeeID, empId)) {
-                System.out.println("Employee : " + (((Employee) p).getFullNames()));
-                //System.out.println("Employee ID: " +empId);
-                // System.out.println(((Person) p).toString());
-            } else {
-                System.out.println("Employee number provided not valid");
-            }
-            System.out.println("Please enter a valid option");
+        if(employeeDB.size() ==0){
+            System.out.println("There are no registered employees on the database");
+            System.out.println("Please select an option");
             System.out.println("[Back] [Exit]");
             String choice = in.next();
 
-            if (choice.equalsIgnoreCase("Back")) {
-                Model.displayMenu("page3", "");
-                break;
-            }
-
-            if (choice.equalsIgnoreCase("Exit")) {
-                System.exit(0);
+            if(choice.equalsIgnoreCase("Back")) {
+                Model.displayMenu("page3", " ");
             }
         }
-    }
-}
+
+        else {
+            System.out.print("\nEmployee ID you want to search by : ");
+            String empId = in.next();
+
+            var tempDB = new ArrayList<>();
+
+            for (Object list : employeeDB) {
+                String employeeID = ((Employee) list).getEmpId();
+                if (seachPattern(employeeID, empId)){
+                    tempDB.add(list);
+                }
+            }
+            for (int count = 0; count < tempDB.size(); count++) {
+                Object person = tempDB.get(count);
+                System.out.println(count + ". " + ((Employee) person).getFullNames());
+                System.out.print("Please select an option to view [eg.1]");
+                int choice = in.nextInt();
+                getEmployeeDetails(choice);
+            }
+        }
+                System.out.println("Please select an option");
+                System.out.println("[Back] [Exit]");
+                String choice = in.next();
+
+                if(choice.equalsIgnoreCase("Back")){
+                    Model.clearScreen();
+                    Model.displayMenu("page3","");
+                }
+
+                if(choice.equalsIgnoreCase("Exit")) {
+                    System.exit(0);
+                }
+
+            }
+        }
