@@ -22,6 +22,17 @@ public class Training {
                 +"\n}";
     }
 
+    public LocalDate getStartDate(){
+        return startDate;
+    }
+
+    public LocalDate getEndDate(){
+        return endDate;
+    }
+
+    public String getTrainingTitle(){
+        return trainingTitle;
+    }
 
 }
 
