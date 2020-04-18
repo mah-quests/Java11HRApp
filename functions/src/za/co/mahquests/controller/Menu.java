@@ -3,6 +3,7 @@ package za.co.mahquests.controller;
 import za.co.mahquests.decoration.Model;
 import za.co.mahquests.hr.authenticate.LocalAuthDB;
 import za.co.mahquests.hr.db.EmployeeDB;
+import za.co.mahquests.hr.db.HRDocumentsDB;
 import za.co.mahquests.hr.db.MessagesDB;
 import za.co.mahquests.hr.db.TrainingDB;
 
@@ -40,6 +41,9 @@ public class Menu {
                         TrainingDB.trainingFunctionOption();
                         break;
                     case "6":
+                        Model.showHRDocuments();
+                        HRDocumentsDB.viewListOfHRDocuments();
+                    case "7":
                         System.exit(0);
                     default:
                         System.out.println("Invalid option, please select a valid choice [1 - 6] ");

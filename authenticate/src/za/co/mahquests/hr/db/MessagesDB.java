@@ -73,13 +73,13 @@ public class MessagesDB {
     }
 
 
-    public static String addNewAnnouncement() {  //*add a "Add new" *
+    public static void addNewAnnouncement() {  //*add a "Add new" *
 
         Model.clearScreen();
         //Model.addCompanyAnnouncements();
 
         Scanner in = new Scanner(System.in);
-        System.out.println("Add an announcement \n====================");
+
         System.out.print("\nSubject of your new announcement : ");
         String subject = in.nextLine();
 
@@ -89,7 +89,7 @@ public class MessagesDB {
         System.out.println("\n Company announcement Loaded, type \'Save\' to save");
         String saveMsg = in.nextLine();
 
-        String numOfAnnouncements = " ";
+        String numOfAnnouncements;
         if (saveMsg.equalsIgnoreCase("save")) {
             messagesDBS.add(getNextArrElemnt(), new MessagesDB(subject, detail));
 
@@ -116,7 +116,7 @@ public class MessagesDB {
 
         //===================================================..
 
-        return "addNewAnnouncement()"; //not sure what to return!!!
+       // return "addNewAnnouncement()"; //not sure what to return!!!
     }
 
     public static void updateCompanyAnnouncement() {
@@ -255,7 +255,7 @@ public class MessagesDB {
 
     public static String deleteCompanyAnnouncement() {
         Model.clearScreen();
-        int count = 0;
+        int count;
         if (messagesDBS.size() > 0) {       //View all the announcement to choose one to delete;
             for (count = 0; count < messagesDBS.size(); count++) {
                 Object msg = messagesDBS.get(count);

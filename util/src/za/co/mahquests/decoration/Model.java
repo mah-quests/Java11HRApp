@@ -28,7 +28,8 @@ public class Model {
                 System.out.println("3. Search for employee");
                 System.out.println("4. Company wide announcements");
                 System.out.println("5. Training schedules");
-                System.out.println("6. Exit");
+                System.out.println("6. HR Documents");
+                System.out.println("7. Exit");
 
             } else {
                 System.out.println("1. View my profile");
@@ -52,7 +53,8 @@ public class Model {
                 System.out.println("1. Add New Company Announcement");
                 System.out.println("2. View Company Announcements");
                 System.out.println("3. Delete A Company Announcements");
-                System.out.println("4. Back to Main Menu");
+                System.out.println("4. Update Company Announcement");
+                System.out.println("5. Back to Main Menu");
 
             } else {
                 System.out.println("1. View New Company Announcements");
@@ -198,7 +200,13 @@ public class Model {
         System.out.println("****                                                  ***");
         System.out.println("*********************************************************");
     }
-
+    public static void showHRDocuments() {
+        System.out.println("*********************************************************");
+        System.out.println("****                                                  ***");
+        System.out.println("*              MaH Quests HR Documents                  *");
+        System.out.println("****                                                  ***");
+        System.out.println("*********************************************************");
+    }
     public static void viewCompanyTraining() {
         System.out.println("*********************************************************");
         System.out.println("****                                                  ***");
@@ -225,5 +233,6 @@ public class Model {
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }
+
 
 }
